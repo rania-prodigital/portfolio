@@ -134,6 +134,2212 @@
             width: 100%;
         }
 
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-switcher::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .lang-switcher:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .lang-switcher:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+        }
+
+        .lang-icon {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+            animation: rotate-globe 3s linear infinite;
+        }
+
+        @keyframes rotate-globe {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .lang-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* RTL Support */
+        body.rtl {
+            direction: rtl;
+        }
+
+        body.rtl .nav-links {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .hero-content,
+        body.rtl .about-content {
+            text-align: right;
+        }
+
+        body.rtl .timeline-item {
+            padding-right: 2rem;
+            padding-left: 0;
+        }
+
+        body.rtl .timeline-item::before {
+            right: 0;
+            left: auto;
+        }
+
+        body.rtl .timeline-dot {
+            right: -6px;
+            left: auto;
+        }
+
+        /* Mode Sombre/Clair */
+        .theme-controls {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+            transform: scale(0);
+            transition: transform 0.5s;
+        }
+
+        .theme-toggle:hover::before {
+            transform: scale(1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .theme-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 1rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .theme-color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .theme-color::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .theme-color:hover::after,
+        .theme-color.active::after {
+            opacity: 1;
+        }
+
+        .theme-color:hover {
+            transform: scale(1.2);
+        }
+
+        body.light-mode {
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        body.light-mode nav {
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        body.light-mode .nav-links a {
+            color: #0f172a;
+        }
+
+        body.light-mode .project-card,
+        body.light-mode .skill-card,
+        body.light-mode .stat-card,
+        body.light-mode .contact-container {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.9));
+            color: #0f172a;
+        }
+
+        body.light-mode .about-text,
+        body.light-mode .project-content p,
+        body.light-mode .timeline-description {
+            color: #334155;
+        }
+
+        body.light-mode .particle {
+            background: var(--primary);
+        }
+
+        body.light-mode .form-group input,
+        body.light-mode .form-group textarea {
+            background: rgba(255, 255, 255, 0.8);
+            color: #0f172a;
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Effet de particules 3D sur la souris */
+        .mouse-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            background: radial-gradient(circle, var(--primary), var(--secondary));
+            opacity: 0;
+            animation: trail-fade 1s ease-out forwards;
+        }
+
+        @keyframes trail-fade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* Easter Egg - Animation secrète */
+        .secret-mode {
+            animation: rainbow-bg 5s linear infinite;
+        }
+
+        @keyframes rainbow-bg {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .secret-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            padding: 3rem 5rem;
+            border-radius: 30px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            z-index: 10001;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            animation: secret-appear 0.5s ease-out;
+            display: none;
+        }
+
+        @keyframes secret-appear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Effet de feu sur le curseur */
+        .cursor-fire {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: radial-gradient(circle, #ff6b00, #ff0000);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9996;
+            animation: fire-flicker 0.1s infinite alternate;
+        }
+
+        @keyframes fire-flicker {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Effet de texte qui s'écrit */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary); }
+        }
+
+        /* Mini-jeu Snake */
+        .game-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 23, 42, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            z-index: 10001;
+            display: none;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+        }
+
+        .game-canvas {
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            background: #0a0f1a;
+        }
+
+        .game-info {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .close-game {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .close-game:hover {
+            transform: rotate(90deg);
+            background: #ff0055;
+        }
+
+        /* Fireworks */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            animation: slideUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            animation: slideUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Section À propos */
+        .about {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image-section {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.4);
+            animation: float-profile 6s ease-in-out infinite;
+        }
+
+        @keyframes float-profile {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .image-wrapper::before,
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            animation: pulse-ring 3s ease-out infinite;
+        }
+
+        .image-wrapper::before {
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+
+        .image-wrapper::after {
+            width: 120%;
+            height: 120%;
+            border: 2px solid var(--secondary);
+            top: -10%;
+            left: -10%;
+            animation-delay: 1.5s;
+            opacity: 0.3;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(236, 72, 153, 0.8));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            animation: float-icon 4s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 10%;
+            right: -10%;
+            animation-delay: 1s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 10%;
+            left: -10%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(4) {
+            bottom: 10%;
+            right: -10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float-icon {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        .about-content {
+            position: relative;
+        }
+
+        .about-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .timeline {
+            margin-top: 3rem;
+        }
+
+        .timeline-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: -2.5rem;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            }
+            50% {
+                transform: scale(1.2);
+                box-shadow: 0 0 30px rgba(99, 102, 241, 1);
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .interests {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .interest-tag {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid var(--primary);
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .interest-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(236, 72, 153, 0.4));
+        }
+
+        /* Section Projets */
+        .projects {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 1024px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .image-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .project-card:hover .project-image::after {
+            width: 500px;
+            height: 500px;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-content p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Section Compétences */
+        .skills {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.05));
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-level {
+            width: 100%;
+            height: 8px;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            width: 0;
+        }
+
+        .skill-card:hover .skill-progress {
+            width: var(--progress);
+        }
+
+        /* Section Contact */
+        .contact {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            padding: 4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 10000;
+            transition: width 0.1s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .image-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-image {
+                font-size: 5rem;
+            }
+        }
+
+        /* Animations au scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Curseur personnalisé -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Contrôles de thème -->
+    <div class="theme-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Mode Sombre/Clair">
+            <span id="theme-icon">🌙</span>
+        </button>
+        <div class="theme-selector">
+            <div class="theme-color active" style="background: linear-gradient(135deg, #6366f1, #ec4899);" onclick="changeTheme('default')"></div>
+            <div class="theme-color" style="background: linear-gradient(135deg, #f59e0b, #ef4444);" onclick="changeTheme('sunset')"></div>
+            <div class="theme-color" style="background: linear-gradient(135deg, #10b981, #3b82f6);" onclick="changeTheme('ocean')"></div>
+            <div class="theme-color" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);" onclick="changeTheme('purple')"></div>
+            <div class="theme-color" style="background: linear-gradient(135deg, #06b6d4, #a855f7);" onclick="changeTheme('cyber')"></div>
+        </div>
+    </div>
+
+    <!-- Message secret -->
+    <div class="secret-message" id="secretMessage">
+        🎉 BRAVO ! Tu as trouvé le secret ! 🎉
+    </div>
+
+    <!-- Mini-jeu Snake -->
+    <div class="game-container" id="gameContainer">
+        <button class="close-game" onclick="closeGame()">×</button>
+        <h3 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">🎮 Snake Game 🐍</h3>
+        <canvas id="gameCanvas" class="game-canvas" width="400" height="400"></canvas>
+        <div class="game-info">
+            <div>Score: <span id="score">0</span></div>
+            <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.7;">Utilisez les flèches pour jouer</div>
+        </div>
+    </div>
+
+    <!-- Indicateur de scroll -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Particules -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home" data-fr="Accueil" data-ar="الرئيسية">Accueil</a></li>
+            <li><a href="#about" data-fr="À propos" data-ar="من أنا">À propos</a></li>
+            <li><a href="#projects" data-fr="Projets" data-ar="المشاريع">Projets</a></li>
+            <li><a href="#skills" data-fr="Compétences" data-ar="المهارات">Compétences</a></li>
+            <li><a href="#contact" data-fr="Contact" data-ar="اتصل بي">Contact</a></li>
+        </ul>
+        <button class="lang-switcher" onclick="toggleLanguage()">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-text">العربية</span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-fr="Développeur Créatif" data-ar="مطور مبدع">Développeur Créatif</h1>
+            <p data-fr="Je transforme vos idées en expériences digitales extraordinaires" data-ar="أحول أفكارك إلى تجارب رقمية استثنائية">Je transforme vos idées en expériences digitales extraordinaires</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary" data-fr="Voir mes projets" data-ar="شاهد مشاريعي">Voir mes projets</a>
+                <a href="#contact" class="btn btn-secondary" data-fr="Me contacter" data-ar="اتصل بي">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="about fade-in" id="about">
+        <div class="about-container">
+            <div class="about-image-section">
+                <div class="image-wrapper">
+                    <div class="profile-image">👨‍💻</div>
+                    <div class="floating-icons">
+                        <div class="floating-icon">💡</div>
+                        <div class="floating-icon">🎨</div>
+                        <div class="floating-icon">⚡</div>
+                        <div class="floating-icon">🚀</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <h2 data-fr="À propos de moi" data-ar="من أنا">À propos de moi</h2>
+                <p class="about-subtitle" data-fr="Développeur Passionné & Créatif" data-ar="مطور شغوف ومبدع">Développeur Passionné & Créatif</p>
+                
+                <p class="about-text" data-fr="Bonjour ! Je suis un développeur full-stack passionné par la création d'expériences web exceptionnelles. Avec plusieurs années d'expérience, je transforme des idées complexes en solutions élégantes et performantes." data-ar="مرحبا! أنا مطور متكامل شغوف بإنشاء تجارب ويب استثنائية. مع سنوات من الخبرة، أحول الأفكار المعقدة إلى حلول أنيقة وفعالة.">
+                    Bonjour ! Je suis un développeur full-stack passionné par la création d'expériences web exceptionnelles. 
+                    Avec plusieurs années d'expérience, je transforme des idées complexes en solutions élégantes et performantes.
+                </p>
+
+                <p class="about-text" data-fr="Ma philosophie ? Combiner design moderne, code propre et innovation pour créer des produits qui font la différence. Chaque projet est une nouvelle aventure où je peux repousser les limites de la créativité et de la technologie." data-ar="فلسفتي؟ الجمع بين التصميم الحديث والكود النظيف والابتكار لإنشاء منتجات تحدث فرقًا. كل مشروع هو مغامرة جديدة حيث يمكنني تجاوز حدود الإبداع والتكنولوجيا.">
+                    Ma philosophie ? Combiner design moderne, code propre et innovation pour créer des produits qui font la différence. 
+                    Chaque projet est une nouvelle aventure où je peux repousser les limites de la créativité et de la technologie.
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label" data-fr="Projets Réalisés" data-ar="مشاريع منجزة">Projets Réalisés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label" data-fr="Années d'Expérience" data-ar="سنوات خبرة">Années d'Expérience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label" data-fr="Clients Satisfaits" data-ar="عملاء راضون">Clients Satisfaits</div>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <h3 class="timeline-title" data-fr="Mon Parcours" data-ar="مسيرتي">Mon Parcours</h3>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year" data-fr="2024 - Aujourd'hui" data-ar="2024 - اليوم">2024 - Aujourd'hui</div>
+                            <div class="timeline-title-text" data-fr="Lead Developer" data-ar="مطور رئيسي">Lead Developer</div>
+                            <p class="timeline-description" data-fr="Direction d'équipes de développement pour créer des applications web innovantes et scalables." data-ar="قيادة فرق التطوير لإنشاء تطبيقات ويب مبتكرة وقابلة للتوسع.">
+                                Direction d'équipes de développement pour créer des applications web innovantes et scalables.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year" data-fr="2021 - 2024" data-ar="2021 - 2024">2021 - 2024</div>
+                            <div class="timeline-title-text" data-fr="Full-Stack Developer" data-ar="مطور متكامل">Full-Stack Developer</div>
+                            <p class="timeline-description" data-fr="Développement d'applications complexes avec React, Node.js et diverses technologies modernes." data-ar="تطوير تطبيقات معقدة باستخدام React و Node.js وتقنيات حديثة متنوعة.">
+                                Développement d'applications complexes avec React, Node.js et diverses technologies modernes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year" data-fr="2019 - 2021" data-ar="2019 - 2021">2019 - 2021</div>
+                            <div class="timeline-title-text" data-fr="Front-End Developer" data-ar="مطور واجهات أمامية">Front-End Developer</div>
+                            <p class="timeline-description" data-fr="Création d'interfaces utilisateur modernes et responsives avec des animations avancées." data-ar="إنشاء واجهات مستخدم حديثة ومتجاوبة مع رسوم متحركة متقدمة.">
+                                Création d'interfaces utilisateur modernes et responsives avec des animations avancées.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interests">
+                    <div class="interest-tag" data-fr="🎮 Gaming" data-ar="🎮 الألعاب">🎮 Gaming</div>
+                    <div class="interest-tag" data-fr="📚 Lecture Tech" data-ar="📚 القراءة التقنية">📚 Lecture Tech</div>
+                    <div class="interest-tag" data-fr="🎵 Musique" data-ar="🎵 الموسيقى">🎵 Musique</div>
+                    <div class="interest-tag" data-fr="✈️ Voyage" data-ar="✈️ السفر">✈️ Voyage</div>
+                    <div class="interest-tag" data-fr="📷 Photographie" data-ar="📷 التصوير">📷 Photographie</div>
+                    <div class="interest-tag" data-fr="🏃 Sport" data-ar="🏃 الرياضة">🏃 Sport</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section class="projects fade-in" id="projects">
+        <h2 class="section-title" data-fr="Projets Récents" data-ar="المشاريع الأخيرة">Projets Récents</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🚀</div>
+                <div class="project-content">
+                    <h3 data-fr="Application E-commerce" data-ar="تطبيق التجارة الإلكترونية">Application E-commerce</h3>
+                    <p data-fr="Une plateforme moderne avec panier intelligent, paiement sécurisé et interface utilisateur fluide." data-ar="منصة حديثة مع سلة تسوق ذكية ودفع آمن وواجهة مستخدم سلسة.">Une plateforme moderne avec panier intelligent, paiement sécurisé et interface utilisateur fluide.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🎨</div>
+                <div class="project-content">
+                    <h3 data-fr="Portfolio Artistique" data-ar="معرض فني">Portfolio Artistique</h3>
+                    <p data-fr="Site vitrine avec galerie interactive et animations 3D pour un artiste contemporain." data-ar="موقع عرض مع معرض تفاعلي ورسوم متحركة ثلاثية الأبعاد لفنان معاصر.">Site vitrine avec galerie interactive et animations 3D pour un artiste contemporain.</p>
+                    <div class="project-tags">
+                        <span class="tag">Three.js</span>
+                        <span class="tag">GSAP</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-content">
+                    <h3 data-fr="Application Mobile" data-ar="تطبيق المحمول">Application Mobile</h3>
+                    <p data-fr="App de fitness avec suivi personnalisé, coach IA et communauté sociale intégrée." data-ar="تطبيق لياقة بدنية مع متابعة مخصصة ومدرب ذكاء اصطناعي ومجتمع اجتماعي متكامل.">App de fitness avec suivi personnalisé, coach IA et communauté sociale intégrée.</p>
+                    <div class="project-tags">
+                        <span class="tag">React Native</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">TensorFlow</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🎮</div>
+                <div class="project-content">
+                    <h3 data-fr="Jeu Web Interactif" data-ar="لعبة ويب تفاعلية">Jeu Web Interactif</h3>
+                    <p data-fr="Mini-jeu multijoueur en temps réel avec graphismes avancés et système de classement." data-ar="لعبة صغيرة متعددة اللاعبين في الوقت الفعلي مع رسومات متقدمة ونظام ترتيب.">Mini-jeu multijoueur en temps réel avec graphismes avancés et système de classement.</p>
+                    <div class="project-tags">
+                        <span class="tag">WebGL</span>
+                        <span class="tag">Socket.io</span>
+                        <span class="tag">Express</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">💼</div>
+                <div class="project-content">
+                    <h3 data-fr="Dashboard Analytics" data-ar="لوحة التحليلات">Dashboard Analytics</h3>
+                    <p data-fr="Tableau de bord avec visualisations de données en temps réel et rapports personnalisables." data-ar="لوحة معلومات مع تصورات بيانات في الوقت الفعلي وتقارير قابلة للتخصيص.">Tableau de bord avec visualisations de données en temps réel et rapports personnalisables.</p>
+                    <div class="project-tags">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag">D3.js</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🌐</div>
+                <div class="project-content">
+                    <h3 data-fr="Réseau Social" data-ar="شبكة اجتماعية">Réseau Social</h3>
+                    <p data-fr="Plateforme sociale de niche avec messagerie instantanée et partage de contenu multimédia." data-ar="منصة اجتماعية متخصصة مع مراسلة فورية ومشاركة محتوى متعدد الوسائط.">Plateforme sociale de niche avec messagerie instantanée et partage de contenu multimédia.</p>
+                    <div class="project-tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Redis</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section class="skills fade-in" id="skills">
+        <h2 class="section-title" data-fr="Mes Compétences" data-ar="مهاراتي">Mes Compétences</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="--progress: 95%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">⚛️</div>
+                <div class="skill-name">React</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="--progress: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-name">CSS/SCSS</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="--progress: 98%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🔧</div>
+                <div class="skill-name">Node.js</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="--progress: 85%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🗄️</div>
+                <div class="skill-name" data-fr="Bases de données" data-ar="قواعد البيانات">Bases de données</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="--progress: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🚀</div>
+                <div class="skill-name" data-fr="Performance" data-ar="الأداء">Performance</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="--progress: 92%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact fade-in" id="contact">
+        <h2 class="section-title" data-fr="Contactez-moi" data-ar="اتصل بي">Contactez-moi</h2>
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name" data-fr="Nom" data-ar="الاسم">Nom</label>
+                    <input type="text" id="name" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="message" data-fr="Message" data-ar="الرسالة">Message</label>
+                    <textarea id="message" required placeholder="Votre message..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn" style="width: 100%;" data-fr="Envoyer" data-ar="إرسال">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" aria-label="GitHub">🐙</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📷</a>
+        </div>
+        <p data-fr="© 2025 Portfolio Premium. Fait avec 💜 et beaucoup de CSS" data-ar="© 2025 معرض متميز. صُنع بـ 💜 والكثير من CSS">© 2025 Portfolio Premium. Fait avec 💜 et beaucoup de CSS</p>
+    </footer>
+
+    <script>
+        // ========== CONFIGURATION DES THÈMES ==========
+        const themes = {
+            default: { primary: '#6366f1', secondary: '#ec4899', accent: '#8b5cf6' },
+            sunset: { primary: '#f59e0b', secondary: '#ef4444', accent: '#fb923c' },
+            ocean: { primary: '#10b981', secondary: '#3b82f6', accent: '#06b6d4' },
+            purple: { primary: '#8b5cf6', secondary: '#ec4899', accent: '#a855f7' },
+            cyber: { primary: '#06b6d4', secondary: '#a855f7', accent: '#8b5cf6' }
+        };
+
+        let currentTheme = 'default';
+        let isLightMode = false;
+        let secretClickCount = 0;
+        let secretMode = false;
+
+        // ========== CHANGEMENT DE THÈME ==========
+        function changeTheme(themeName) {
+            sounds.click();
+            currentTheme = themeName;
+            const theme = themes[themeName];
+            
+            document.documentElement.style.setProperty('--primary', theme.primary);
+            document.documentElement.style.setProperty('--secondary', theme.secondary);
+            document.documentElement.style.setProperty('--accent', theme.accent);
+            
+            // Animation visuelle
+            createFireworks();
+            
+            // Mettre à jour l'indicateur actif
+            document.querySelectorAll('.theme-color').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // ========== MODE SOMBRE/CLAIR ==========
+        function toggleTheme() {
+            sounds.switch();
+            isLightMode = !isLightMode;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (isLightMode) {
+                body.classList.add('light-mode');
+                icon.textContent = '☀️';
+            } else {
+                body.classList.remove('light-mode');
+                icon.textContent = '🌙';
+            }
+            
+            createFireworks();
+        }
+
+        // ========== EFFET DE TRAINÉE DE SOURIS ==========
+        let mouseTrailTimer;
+        document.addEventListener('mousemove', (e) => {
+            if (!secretMode) {
+                const trail = document.createElement('div');
+                trail.className = 'mouse-trail';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
+                
+                setTimeout(() => trail.remove(), 1000);
+            } else {
+                // Mode secret : feu
+                const fire = document.createElement('div');
+                fire.className = 'cursor-fire';
+                fire.style.left = e.clientX + Math.random() * 20 - 10 + 'px';
+                fire.style.top = e.clientY + Math.random() * 20 - 10 + 'px';
+                document.body.appendChild(fire);
+                
+                setTimeout(() => fire.remove(), 500);
+            }
+        });
+
+        // ========== EASTER EGG SECRET ==========
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                activateSecretMode();
+            }
+        });
+
+        // Clic secret sur le logo
+        document.querySelector('.logo').addEventListener('click', () => {
+            secretClickCount++;
+            if (secretClickCount === 5) {
+                activateSecretMode();
+                secretClickCount = 0;
+            }
+        });
+
+        function activateSecretMode() {
+            secretMode = !secretMode;
+            sounds.success();
+            
+            const body = document.body;
+            const message = document.getElementById('secretMessage');
+            
+            if (secretMode) {
+                body.classList.add('secret-mode');
+                message.style.display = 'block';
+                
+                // Mega fireworks
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => createFireworks(), i * 300);
+                }
+                
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000);
+            } else {
+                body.classList.remove('secret-mode');
+            }
+        }
+
+        // ========== FIREWORKS ==========
+        function createFireworks() {
+            const colors = ['#6366f1', '#ec4899', '#8b5cf6', '#f59e0b', '#10b981'];
+            
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+                
+                firework.style.left = startX + 'px';
+                firework.style.top = startY + 'px';
+                
+                document.body.appendChild(firework);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 200 + 100;
+                const duration = Math.random() * 1000 + 1000;
+                
+                const endX = startX + Math.cos(angle) * velocity;
+                const endY = startY + Math.sin(angle) * velocity;
+                
+                firework.animate([
+                    { left: startX + 'px', top: startY + 'px', opacity: 1 },
+                    { left: endX + 'px', top: endY + 'px', opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'ease-out'
+                });
+                
+                setTimeout(() => firework.remove(), duration);
+            }
+        }
+
+        // ========== MINI-JEU SNAKE ==========
+        let snake, food, direction, score, gameLoop;
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize;
+
+        // Triple clic sur n'importe quel projet pour lancer le jeu
+        document.querySelectorAll('.project-card').forEach(card => {
+            let clickCount = 0;
+            let clickTimer;
+            
+            card.addEventListener('click', () => {
+                clickCount++;
+                clearTimeout(clickTimer);
+                
+                if (clickCount === 3) {
+                    openGame();
+                    clickCount = 0;
+                } else {
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 500);
+                }
+            });
+        });
+
+        function openGame() {
+            sounds.success();
+            document.getElementById('gameContainer').style.display = 'block';
+            initGame();
+        }
+
+        function closeGame() {
+            sounds.click();
+            document.getElementById('gameContainer').style.display = 'none';
+            clearInterval(gameLoop);
+        }
+
+        function initGame() {
+            snake = [{x: 10, y: 10}];
+            food = {x: 15, y: 15};
+            direction = {x: 1, y: 0};
+            score = 0;
+            document.getElementById('score').textContent = score;
+            
+            clearInterval(gameLoop);
+            gameLoop = setInterval(updateGame, 100);
+        }
+
+        function updateGame() {
+            // Déplacer le serpent
+            const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
+            
+            // Vérifier collision avec les murs
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                gameOver();
+                return;
+            }
+            
+            // Vérifier collision avec soi-même
+            if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                gameOver();
+                return;
+            }
+            
+            snake.unshift(head);
+            
+            // Vérifier si mange la nourriture
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                document.getElementById('score').textContent = score;
+                sounds.notification();
+                food = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount)
+                };
+            } else {
+                snake.pop();
+            }
+            
+            drawGame();
+        }
+
+        function drawGame() {
+            // Fond
+            ctx.fillStyle = '#0a0f1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Serpent
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, themes[currentTheme].primary);
+            gradient.addColorStop(1, themes[currentTheme].secondary);
+            
+            snake.forEach((segment, index) => {
+                ctx.fillStyle = gradient;
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+                
+                // Effet de brillance
+                if (index === 0) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.fillRect(segment.x * gridSize + 2, segment.y * gridSize + 2, gridSize - 6, gridSize - 6);
+                }
+            });
+            
+            // Nourriture
+            ctx.fillStyle = themes[currentTheme].accent;
+            ctx.beginPath();
+            ctx.arc(food.x * gridSize + gridSize/2, food.y * gridSize + gridSize/2, gridSize/2 - 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Effet pulsant sur la nourriture
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function gameOver() {
+            clearInterval(gameLoop);
+            sounds.click();
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = themes[currentTheme].primary;
+            ctx.font = '30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Game Over!', canvas.width/2, canvas.height/2 - 20);
+            ctx.font = '20px Arial';
+            ctx.fillText(`Score: ${score}`, canvas.width/2, canvas.height/2 + 20);
+            ctx.fillText('Appuyez sur Espace', canvas.width/2, canvas.height/2 + 50);
+        }
+
+        // Contrôles du jeu
+        document.addEventListener('keydown', (e) => {
+            const gameContainer = document.getElementById('gameContainer');
+            
+            if (gameContainer.style.display === 'block') {
+                switch(e.key) {
+                    case 'ArrowUp':
+                        if (direction.y === 0) direction = {x: 0, y: -1};
+                        break;
+                    case 'ArrowDown':
+                        if (direction.y === 0) direction = {x: 0, y: 1};
+                        break;
+                    case 'ArrowLeft':
+                        if (direction.x === 0) direction = {x: -1, y: 0};
+                        break;
+                    case 'ArrowRight':
+                        if (direction.x === 0) direction = {x: 1, y: 0};
+                        break;
+                    case ' ':
+                        initGame();
+                        break;
+                }
+                e.preventDefault();
+            }
+        });
+
+        // ========== SYSTÈME DE SONS ==========
+        const sounds = {
+            click: () => playTone(800, 0.1, 'sine'),
+            hover: () => playTone(600, 0.05, 'sine'),
+            switch: () => playTone(1000, 0.15, 'square'),
+            success: () => playMelody([523, 659, 784], 0.1),
+            notification: () => playMelody([880, 1047], 0.1)
+        };
+
+        function playTone(frequency, duration, type = 'sine') {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        function playMelody(frequencies, duration) {
+            frequencies.forEach((freq, index) => {
+                setTimeout(() => playTone(freq, duration), index * duration * 1000);
+            });
+        }
+
+        // ========== CHANGEMENT DE LANGUE ==========
+        let currentLang = 'fr';
+
+        function toggleLanguage() {
+            sounds.switch();
+            
+            currentLang = currentLang === 'fr' ? 'ar' : 'fr';
+            const body = document.body;
+            const langButton = document.querySelector('.lang-text');
+            
+            // Animation du bouton
+            langButton.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                langButton.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Changer la direction du texte
+            if (currentLang === 'ar') {
+                body.classList.add('rtl');
+                langButton.textContent = 'Français';
+            } else {
+                body.classList.remove('rtl');
+                langButton.textContent = 'العربية';
+            }
+            
+            // Mettre à jour tous les textes
+            document.querySelectorAll('[data-fr][data-ar]').forEach(element => {
+                const text = currentLang === 'fr' ? element.getAttribute('data-fr') : element.getAttribute('data-ar');
+                
+                // Animation de fondu
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(-10px)';
+                
+                setTimeout(() => {
+                    element.textContent = text;
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 200);
+            });
+
+            // Changer les placeholders des inputs
+            const nameInput = document.getElementById('name');
+            const messageInput = document.getElementById('message');
+            
+            if (currentLang === 'ar') {
+                nameInput.placeholder = 'اسمك';
+                messageInput.placeholder = 'رسالتك...';
+            } else {
+                nameInput.placeholder = 'Votre nom';
+                messageInput.placeholder = 'Votre message...';
+            }
+            
+            // Animation de confetti
+            createConfetti();
+            sounds.success();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '10000';
+                confetti.style.transition = 'all 2s ease-out';
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.style.top = window.innerHeight + 'px';
+                    confetti.style.transform = `rotate(${Math.random() * 720}deg)`;
+                    confetti.style.opacity = '0';
+                }, 50);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2050);
+            }
+        }
+
+        // ========== EFFETS SONORES SUR LES ÉLÉMENTS ==========
+        // Sons sur les boutons
+        document.querySelectorAll('.btn, button').forEach(btn => {
+            btn.addEventListener('click', () => sounds.click());
+            btn.addEventListener('mouseenter', () => sounds.hover());
+        });
+
+        // Sons sur les cartes de projet
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => sounds.hover());
+        });
+
+        // Sons sur les cartes de compétences
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', () => sounds.hover());
+        });
+
+        // Sons sur les liens de navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => sounds.click());
+        });
+
+        // Sons sur les tags d'intérêt
+        document.querySelectorAll('.interest-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                sounds.click();
+                tag.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    tag.style.transform = 'translateY(-3px)';
+                }, 100);
+            });
+        });
+
+        // ========== CURSEUR PERSONNALISÉ ==========
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+
+        // Effet sur les liens
+        document.querySelectorAll('a, button, .project-card, .skill-card, .interest-tag').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+
+        // ========== PARTICULES ==========
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // ========== INDICATEUR DE SCROLL ==========
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollIndicator.style.width = scrollPercent + '%';
+        });
+
+        // ========== ANIMATION AU SCROLL ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    sounds.notification();
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========== FORMULAIRE DE CONTACT ==========
+        function handleSubmit(e) {
+            e.preventDefault();
+            sounds.success();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Animation du bouton
+            submitBtn.style.transform = 'scale(0.95)';
+            submitBtn.textContent = currentLang === 'fr' ? 'Envoyé! ✓' : 'تم الإرسال! ✓';
+            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            
+            createConfetti();
+            createFireworks();
+            
+            setTimeout(() => {
+                const message = currentLang === 'fr' 
+                    ? `Merci ${name} ! Votre message a été envoyé avec succès. 🚀\n\nJe vous répondrai rapidement à ${email}`
+                    : `شكراً ${name}! تم إرسال رسالتك بنجاح. 🚀\n\nسأرد عليك قريباً على ${email}`;
+                alert(message);
+                e.target.reset();
+                submitBtn.textContent = currentLang === 'fr' ? 'Envoyer' : 'إرسال';
+                submitBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+                submitBtn.style.transform = 'scale(1)';
+            }, 1500);
+        }
+
+        // ========== PARALLAX EFFECT SUR LE HERO ==========
+        window.addEventListener('mousemove', (e) => {
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                hero.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        });
+
+        // ========== TRANSITION DES ÉLÉMENTS ==========
+        document.querySelectorAll('[data-fr][data-ar]').forEach(element => {
+            element.style.transition = 'all 0.3s ease';
+        });
+
+        // ========== MESSAGE DE BIENVENUE ==========
+        console.log('%c🎉 BIENVENUE ! 🎉', 'font-size: 30px; font-weight: bold; color: #6366f1;');
+        console.log('%c🎮 Easter Eggs:', 'font-size: 16px; color: #ec4899;');
+        console.log('%c   - Triple-clic sur un projet pour jouer à Snake!', 'font-size: 14px;');
+        console.log('%c   - Cliquez 5 fois sur le logo pour le mode secret!', 'font-size: 14px;');
+        console.log('%c   - Tapez: ↑ ↑ ↓ ↓ ← → ← → B A pour Konami Code!', 'font-size: 14px;');
+        console.log('%c🎨 Site créé avec amour et beaucoup de CSS!', 'font-size: 14px; color: #8b5cf6;');
+    </script>
+</body>
+</html>            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--secondary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        /* Particules d'arrière-plan */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-200px) translateX(-50px); }
+            75% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
